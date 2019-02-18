@@ -1,0 +1,31 @@
+job_begin
+  name jobA
+  time 6m
+  memory 10m
+  cmd echo "hello from job jobA"
+job_end
+
+job_begin
+  name jobB
+  time 8m
+  memory 20m
+  cmd echo "hello from job jobB"
+job_end
+
+job_begin
+  name jobC
+  time 10m
+  memory 30m
+  cmd echo "hello from job jobB"
+job_end
+
+job_begin
+  name jobD
+  time 10m
+  memory 35m
+  cmd echo "hello from job jobB"
+job_end
+
+order jobA before jobC
+order jobB before jobC
+order jobC before jobD
