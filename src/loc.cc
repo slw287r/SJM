@@ -57,86 +57,29 @@ LocBatchSystem::LocBatchSystem ()
 void
 LocBatchSystem::init ()
 {
-    //do some initialization work
 }
 
 bool
 LocBatchSystem::submit (Job& job)
 {
-    string jobName = job.name();
-    const char* command = job.command().c_str();
-
-    //memory limit
-    size_t memoryLimit = job.memoryLimit();
-    size_t unit_m = 1024 * 1024;
-    size_t totalMemoryB = sysconf(_SC_PHYS_PAGES) *  sysconf(_SC_PAGE_SIZE);
-    size_t totalMemoryM = totalMemoryB / unit_m;
-    if(totalMemoryM < memoryLimit){
-        return false;
-    }
-    //execute job
-    int pid = fork();
-    if(pid == 0){
-        job.setJobId(getpid());
-        execl("/bin/sh", "sh", "-c", command, NULL);
-        job.changeStatus(Job::Dispatched);
-    }else{
-        return false;
-    }
     return true;
 }
 
 void
 LocBatchSystem::kill (Job& job)
 {
-    if (job.status() == Job::Dispatched ||
-	job.status() == Job::Pending ||
-	job.status() == Job::Running) {
-	if (::kill(job.jobId(), SIGKILL) < 0) {
-	    ostringstream err;
-	    err << "cannot kill job " << job.name();
-	    throw runtime_error(err.str());
-	}
-	job.changeStatus(Job::Failed);
-    }
+    return;
 }
 
 bool
 LocBatchSystem::checkStatus (Job& job)
 {
-    int status = 0;
-    struct rusage res;
-    int pid = wait4(job.jobId(), &status, WNOHANG, &res);
-    if (pid < 0) {
-        ostringstream err;
-        err << "cannot check job " << job.name() << ": wait4 failed: "
-            << pid;
-        throw runtime_error(err.str());
-    }
-    if (pid == 0) {
-        return false;
-    }
-    if (WIFEXITED(status)) {
-        unsigned exitCode = WEXITSTATUS(status);
-        if (exitCode == 0) {
-            job.changeStatus(Job::Done);
-        } else {
-            job.changeStatus(Job::Failed);
-            job.setExitCode(exitCode);
-        }
-    } else {
-        job.changeStatus(Job::Failed);
-    }
-    job.setCpuTime(res.ru_utime.tv_sec + res.ru_stime.tv_sec +
-                   (res.ru_utime.tv_usec + res.ru_stime.tv_usec) / 1000000);
-    job.setMemoryUsage(res.ru_maxrss * 1024);
     return true;
 }
 
 bool
 LocBatchSystem::canWait ()
 {
-    // LSF does not support a wait() call
     return false;
 }
 

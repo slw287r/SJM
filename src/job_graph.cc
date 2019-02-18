@@ -79,7 +79,11 @@ const string Job::invalidString("invalid");
 Job::Job ():
     memoryLimit_(0),
     timeLimit_(0),
+#if defined(HAVE_SGE) || defined(HAVE_LSF)
     runLocally_(false),
+#else
+    runLocally_(true),
+#endif
     slots_(0),
     jobId_(0),
     status_(Unknown),
