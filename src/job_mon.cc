@@ -36,7 +36,6 @@
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-static char const rcsid[] = "$Id: job_mon.cc 240 2009-03-19 21:51:09Z lacroute $";
 
 #include <iostream>
 #include <fstream>
@@ -156,7 +155,6 @@ RateLimiter::empty ()
 const regex JobMonitor::filenameRE("(.*)\\.log(\\d+)?");
 
 JobMonitor::JobMonitor ():
-    verbose_(true),
     dispatchCount_(defDispatchCount),
     dispatchInterval_(defDispatchInterval),
     pendingJobLimit_(defPendingJobLimit),

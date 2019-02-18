@@ -19,6 +19,12 @@ AC_ARG_VAR(LSF_LIBDIR, [Platform LSF library directory])
 AS_IF([test "x$LSF_LIBDIR" != "x"], [have_lsf=yes], [have_lsf=no])
 AC_MSG_RESULT($have_lsf)
 
+# check for presence of the localhost scheduler
+AC_MSG_CHECKING([for Platform LOC])
+AC_ARG_VAR(LOC_LIBDIR, [Platform LOC library directory])
+AS_IF([test "x$PATH" != "x"], [have_loc=yes], [have_loc=no])
+AC_MSG_RESULT($have_loc)
+
 # let the user choose a scheduler (--with-scheduler command-line option)
 AC_ARG_WITH([scheduler],
   [AS_HELP_STRING([--with-scheduler=value],
@@ -26,6 +32,7 @@ AC_ARG_WITH([scheduler],
   [AS_CASE([$with_scheduler],
            [SGE], [],
            [LSF], [],
+           [LOC], [],
            [AC_MSG_ERROR([job scheduler $with_scheduler is not supported])])],
   [with_scheduler=check])
   
@@ -33,17 +40,18 @@ AC_ARG_WITH([scheduler],
 AS_IF([test "x$with_scheduler" = "xcheck"],
       [AS_IF([test "x$have_sge" = "xyes"], [with_scheduler=SGE],
 	     [test "x$have_lsf" = "xyes"], [with_scheduler=LSF],
-	     [AC_MSG_ERROR(
-               [you need a job scheduler (try --with-scheduler)])])])
+	     [test "x$have_loc" = "xyes"], [with_scheduler=LOC])])
 
 # record the selected job scheduler
 AC_MSG_NOTICE([using scheduler $with_scheduler])
 AS_CASE([$with_scheduler],
         [SGE], [AC_DEFINE([HAVE_SGE], [1], [use Sun Grid Engine])],
         [LSF], [AC_DEFINE([HAVE_LSF], [1], [use Platform LSF])],
+        [LOC], [AC_DEFINE([HAVE_LOC], [1], [use Platform LOC])],
         [AC_MSG_ERROR([job scheduler $with_scheduler is not supported])])
 AM_CONDITIONAL([SGE], [test x$with_scheduler = xSGE])
 AM_CONDITIONAL([LSF], [test x$with_scheduler = xLSF])
+AM_CONDITIONAL([LOC], [test x$with_scheduler = xLOC])
 
 # determine the architecture for Sun Grid Engine (for finding libs)
 AS_IF([test "x$with_scheduler" = "xSGE"],

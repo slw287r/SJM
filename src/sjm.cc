@@ -36,7 +36,6 @@
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-static char const rcsid[] = "$Id: sjm.cc 213 2008-07-08 20:51:42Z lacroute $";
 
 #include <iostream>
 #include <string>
@@ -54,10 +53,8 @@ public:
     string jobFile_;		// input file name
     string outFile_;		// output file name
     string logFile_;		// log file name
-    bool render_;		// render job graph into dot-format
-				// output file instead of submitting jobs
-    bool interactive_;		// run as a foreground process instead
-				// of in the background
+    bool render_;		// render job graph into dot-format, output file instead of submitting jobs
+    bool interactive_;		// run as a foreground process instead of in the background
     unsigned dispatchCount_;	// max jobs to dispatch per dispatch interval
     unsigned dispatchInterval_;	// dispatch interval (seconds)
     unsigned pendingJobLimit_;	// max pending jobs

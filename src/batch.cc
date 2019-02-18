@@ -36,7 +36,6 @@
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-static char const rcsid[] = "$Id: batch.cc 171 2008-04-17 22:57:24Z lacroute $";
 
 #include <stdexcept>
 #include <iostream>

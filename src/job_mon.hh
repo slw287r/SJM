@@ -107,8 +107,7 @@ private:
     // default job dispatch limits
     static const unsigned defDispatchCount = 15; // max jobs per interval
     static const unsigned defPendingJobLimit = 100; // max pending jobs
-    static const unsigned defMaxStatusErr = 3; // give up after this many
-				// status-collection errors
+    static const unsigned defMaxStatusErr = 3; // give up after this many status-collection errors
 
     // default time intervals in seconds
     static const unsigned defDispatchInterval = 10; // dispatch interval
@@ -118,7 +117,6 @@ private:
 
     static const std::regex filenameRE;
 
-    bool verbose_;
     unsigned dispatchCount_;
     unsigned dispatchInterval_;
     unsigned pendingJobLimit_;

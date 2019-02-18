@@ -50,3 +50,7 @@ sjm_CPPFLAGS += -I$(LSF_LIBDIR)/../include
 sjm_LDFLAGS += -L$(LSF_LIBDIR)
 sjm_LDADD += -lbat -llsf -lnsl
 endif
+
+if LOC
+sjm_SOURCES += loc.cc loc.hh
+endif

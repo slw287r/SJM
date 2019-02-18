@@ -36,7 +36,6 @@
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-static char const rcsid[] = "$Id: lsf.cc 214 2008-07-09 21:12:42Z lacroute $";
 
 #include <string>
 #include <sstream>

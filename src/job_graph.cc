@@ -36,7 +36,6 @@
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-static char const rcsid[] = "$Id: job_graph.cc 240 2009-03-19 21:51:09Z lacroute $";
 
 #include <iostream>
 #include <fstream>
@@ -304,7 +303,7 @@ JobGraph::changeJobStatus (Job* job, Job::Status status)
     job->status_ = status;
     if (status == Job::Dispatched) {
 	if (find(job->jobId()) != 0) {
-	    logic_error("duplicate job ID " + job->jobId());
+	    logic_error("duplicate job ID " + std::to_string(job->jobId()));
 	}
 	jobsById_[job->jobId()] = job;
     } else if (status == Job::Done) {
