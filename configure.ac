@@ -1,8 +1,11 @@
 AC_INIT([Simple Job Manager], [1.2.0], [lacroute@stanford.edu], [sjm])
 AM_INIT_AUTOMAKE(foreign)
 AM_CONFIG_HEADER(config.h)
+AC_PREFIX_DEFAULT(/usr/local/)
 
+# ckeck for compiler
 AC_PROG_CXX
+AC_PROG_CC
 
 # check for presence of the Sun Grid Engine scheduler
 AC_MSG_CHECKING([for Sun Grid Engine])
@@ -64,11 +67,14 @@ AC_DEFINE_UNQUOTED([SGE_MULTICORE_PE], ["$with_pe"],
                    [SGE parallel environment for multicore jobs])
 
 # XXX check for scheduler header files and libraries
+AC_CHECK_HEADER([CLI.hpp])
 
-# XXX check for boost libraries
+# write variable into Makefile
+AC_SUBST(AM_CXXFLAGS, "-std=c++11 -g -Wall")
 
 AC_CONFIG_FILES([
   Makefile
   src/Makefile
 ])
+
 AC_OUTPUT

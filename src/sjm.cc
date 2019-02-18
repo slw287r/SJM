@@ -89,6 +89,9 @@ public:
 int
 main(int argc, char **argv)
 {
+    std::string sys_cmd = std::string(argv[0]) + " -h";
+    if(argc < 2){std::system(sys_cmd.c_str()); return 0;}
+
     Options options;
     CLI::App app("simple job manager");
     app.add_option("-o,--out", options.outFile_, "output file");
@@ -103,14 +106,10 @@ main(int argc, char **argv)
     app.add_option("--save_interval", options.saveInterval_, "interval between saving job status");
     app.add_option("--log_interval", options.logInterval_, "interval between logging status");
     app.add_option("--max_status_errors", options.maxStatusErr_, "maximum status-collection errors");
-    app.add_option("--log_level", options.logLevel_, "log level");
+    app.add_option("--log_level", options.logLevel_, "log level[verbose|info|warning|error]");
     app.add_option("--mail", options.mailAddr_, "email address for notification");
-    app.add_option("jobfile", options.jobFile_, "job description file");
+    app.add_option("jobfile", options.jobFile_, "job description file")->required(true)->check(CLI::ExistingFile);
     CLI_PARSE(app, argc, argv);
-    
-    if(options.jobFile_.empty()){
-        return 0;
-    }
 
     JobMonitor jobMon;
     if (options.render_) {
