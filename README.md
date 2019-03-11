@@ -1,5 +1,9 @@
-SJM, Cloned from [SJM](https://github.com/StanfordBioinformatics/SJM) 
-Modified...somehow by myself for use with ease. 
+SJM, Cloned from [SJM](https://github.com/StanfordBioinformatics/SJM) with the following modifications  
+1. remove boost dependency, use embeded [CLI](https://github.com/CLIUtils/CLI11) instead  
+2. remove TCLAP dependency, use std::regex instead  
+3. remove perl scripts run_with_env, keep perl scripts away  
+4. allow compile and executaion under environment without sge/lfs
+5. support local job submit and monitoring natively if no sge/lfs found  
 
 Installation && usage 
 1. clone repo  
