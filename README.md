@@ -1,10 +1,10 @@
 # Simple Job Manager (SJM)
 
-# Summary
+## Summary
 
 SJM is a program for managing a group of related jobs running on a compute cluster. It provides a convenient method for specifying dependencies between jobs and the resource requirements for each job (e.g. memory, CPU cores). It monitors the status of the jobs so you can tell when the whole group is done. If any of the jobs fails (e.g. due to a compute node crashing) SJM allows you to resume without rerunning the jobs that completed successfully. Finally, SJM provides a portable way to submit jobs to different job schedulers such as Sun Grid Engine or Platform LSF.
 
-# Changes
+## Changes
 
 SJM, Cloned from [SJM](https://github.com/StanfordBioinformatics/SJM) with the following modifications by [vanNul](https://github.com/vanNul)
 1. remove boost dependency, use embeded [CLI](https://github.com/CLIUtils/CLI11) instead  
@@ -13,7 +13,7 @@ SJM, Cloned from [SJM](https://github.com/StanfordBioinformatics/SJM) with the f
 4. allow compile and executaion under environment without sge/lfs
 5. support local job submit and monitoring natively if no sge/lfs found  
 
-# Installation && Usage 
+## Installation && Usage 
 1. clone repo  
    ```
    git clone https://github.com/slw287r/SJM.git
