@@ -71,4 +71,4 @@ SJM, Cloned from [SJM](https://github.com/StanfordBioinformatics/SJM) with the f
    sjm example.sjm
    ```
    
-   you'd better check [manual](https://github.com/slw287r/SJM/tree/master/doc/MANUAL.txt) for more help 
+   you'd better check [manual](https://github.com/slw287r/SJM/tree/master/doc/MANUAL.md) for more help 
