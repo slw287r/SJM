@@ -233,6 +233,7 @@ JOB_FILE is the job description file. For a description of all the options, run 
 `-r`  instead of dispatching the jobs, output a graphical representation
     of the job dependency graph in "dot" format.  See www.graphviz.org
     for programs to display this format.
+	<img src="example.svg">
 
 sjm produces three output files:
 
