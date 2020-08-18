@@ -6,7 +6,7 @@ SJM is a program for managing a group of related jobs running on a compute clust
 
 ## Changes
 
-SJM, Cloned from [SJM](https://github.com/StanfordBioinformatics/SJM) with the following modifications by [vanNul](https://github.com/vanNul)
+SJM, Cloned from [SJM](https://github.com/StanfordBioinformatics/SJM) with the following modifications by [wulj2](https://github.com/wulj2)
 1. remove boost dependency, use embeded [CLI](https://github.com/CLIUtils/CLI11) instead  
 2. remove TCLAP dependency, use std::regex instead  
 3. remove perl scripts run_with_env, keep perl scripts away  
